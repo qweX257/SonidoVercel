@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="cajaSonido">
+        <button id="play">play</button>
+        <button id="stop">stop</button>
+    </div>
+
+    <script>
+        window.addEventListener("load",function(){
+            document.getElementById("play").addEventListener("click",iniciarSonido);
+            document.getElementById("stop").addEventListener("click",detenerSonido);
+        });
+
+        function iniciarSonido(){
+            var sonido = document.createElement("iframe");
+            sonido.setAttribute("src","warhammer.mp3");
+            document.body.appendChild(sonido);
+            document.getElementById("play").removeEventListener("click",iniciarSonido);
+        }
+
+        function detenerSonido(){
+            var iframe = document.getElementsByTagName("iframe");
+
+            if (iframe.length > 0){
+                iframe[0].parentNode.removeChild(iframe[0]);
+                document.getElementById("play").addEventListener("click", iniciarSonido);
+            }
+        }
+    </script>
+
+</body>
+</html>
